@@ -1,0 +1,16 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60  # Test pendant 60 secondes
+      arrivalRate: 50  # 50 requêtes par seconde
+scenarios:
+  - flow:
+      - post:
+          url: "/titresFonciers"
+          headers:
+            Content-Type: "multipart/form-data"
+          formData:
+            proprietaire: "Test User"
+            description: "Titre foncier test"
+            adresse: "Test Adresse"
+            document: "@/home/aurelius/testfiles/file_{{ $randomInt(1,10000) }}.txt"
